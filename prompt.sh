@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 
 alias resource='source ~/.profile'
-alias sites='cd ~/Sites'
-alias top='top -o cpu'
-alias f='ack'
 alias dev="ssh $(echo $USER).dev.okcupid.com"
 alias okcontent="cd /Volumes/$(echo $USER)/oksrc/cupid/okcontent"
 alias watch="../offline/frontendscripts/webpack-watch.js"
