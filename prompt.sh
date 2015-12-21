@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-alias resource='source ~/.bashrc'
+alias resource='source ~/.profile'
 alias sites='cd ~/Sites'
 alias top='top -o cpu'
 alias f='ack'
