@@ -161,7 +161,6 @@ nvm use 4.2.3
 nvm alias default node
 
 # add paths to .profile
-echo "source $(brew --prefix nvm)/nvm.sh" >> ~/.profile
 echo "source $DIR/prompt.sh" >> ~/.profile
 
 
