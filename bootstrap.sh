@@ -160,8 +160,8 @@ nvm install 4.2.3
 nvm use 4.2.3
 nvm alias default node
 
-# add paths to .profile
-echo "source $DIR/prompt.sh" >> ~/.profile
+# add paths to .profile (if not already present)
+grep -q "prompt.sh" ~/.profile || echo "source $DIR/prompt.sh" >> ~/.profile
 
 
 echo "Bootstrapping complete"
