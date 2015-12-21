@@ -155,7 +155,7 @@ brew cask install ${CASKS[@]}
 echo "Set up NVM"
 
 source $(brew --prefix nvm)/nvm.sh
-npm install 4.2.3
+nvm install 4.2.3
 nvm use 4.2.3
 nvm alias default node
 
