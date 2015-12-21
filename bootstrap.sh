@@ -153,7 +153,6 @@ echo "Installing cask apps..."
 brew cask install ${CASKS[@]}
 
 echo "Set up NVM"
-
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash
 source $(brew --prefix nvm)/nvm.sh
 nvm install 4.2.3
