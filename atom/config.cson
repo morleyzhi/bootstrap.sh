@@ -1,0 +1,52 @@
+"*":
+  core:
+    audioBeep: false
+    disabledPackages: [
+      "bracket-matcher"
+      "autocomplete-html"
+    ]
+    ignoredNames: [
+      ".git"
+      ".hg"
+      ".svn"
+      ".DS_Store"
+      "._*"
+      "Thumbs.db"
+      "desktop.ini"
+      "node_modules"
+    ]
+    telemetryConsent: "limited"
+    themes: [
+      "one-light-ui"
+      "one-light-syntax"
+    ]
+  editor:
+    backUpBeforeSaving: true
+    fontFamily: "Iosevka Term"
+    fontSize: 12
+    invisibles: {}
+    showInvisibles: true
+    softTabs: false
+    tabType: "soft"
+    undoGroupingInterval: 200
+  "exception-reporting":
+    userId: "a0f54338-5e58-ac4e-7778-54f72d006d60"
+  "formatter-tidy":
+    html:
+      arguments: [
+        "--wrap 100"
+      ]
+  jsformat:
+    format_on_save: false
+    indent_with_tabs: true
+    keep_function_indentation: true
+  linter:
+    lintOnFly: false
+    lintOnFlyInterval: 3000
+    showErrorInline: false
+  "simple-drag-drop-text":
+    copyKey: "meta"
+  welcome:
+    showOnStartup: false
+  whitespace:
+    ignoreWhitespaceOnCurrentLine: false

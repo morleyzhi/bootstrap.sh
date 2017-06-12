@@ -1,0 +1,28 @@
+{
+	"auto_close_tags": false,
+	"auto_match_enabled": false,
+	"color_scheme": "Packages/User/SublimeLinter/LAZY (SL).tmTheme",
+	"copy_with_empty_selection": false,
+	"ensure_newline_at_eof_on_save": true,
+	"fold_buttons": false,
+	"folder_exclude_patterns":
+	[
+		"node_modules"
+	],
+	"font_face": "Iosevka Term",
+	"font_size": 12,
+	"ignored_packages":
+	[
+		"JavaScript",
+		"JSLint",
+		"Vintage"
+	],
+	"line_padding_bottom": 1,
+	"line_padding_top": 0,
+	"open_files_in_new_window": false,
+	"rulers":
+	[
+		90
+	],
+	"trim_trailing_white_space_on_save": true
+}

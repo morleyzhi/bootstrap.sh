@@ -1,0 +1,17 @@
+[
+	{ "keys": ["super+;"], "command": "show_overlay", "args": {"overlay": "goto", "text": ":"} },
+	// replaces super+p
+	{ "keys": ["super+o"], "command": "show_overlay", "args": {"overlay": "goto"} },
+	{ "keys": ["super+t"], "command": "show_overlay", "args": {"overlay": "goto"} },
+	{ "keys": ["super+shift+o"], "command": "prompt_open" },
+	// replaces super+shift+d
+	{ "keys": ["super+d"], "command": "duplicate_line" },
+	{ "keys": ["super+t"], "command": "new_file" },
+	{ "keys": ["super+shift+f"], "command": "show_panel", "args": {"panel": "replace"} },
+	{ "keys": ["ctrl+tab"], "command": "next_view" },
+	{ "keys": ["ctrl+shift+tab"], "command": "prev_view" },
+	{ "keys": ["super+r"], "command": "refresh_folder_list" },
+	{ "keys": ["super+shift+alt+w"], "command": "close_all" },
+	{ "keys": ["super+shift+w"], "command": "toggle_setting", "args": {"setting": "word_wrap"} },
+	{ "keys": ["super+s"], "command": "save" }
+]

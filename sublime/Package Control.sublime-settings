@@ -1,0 +1,28 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"3024 Color Scheme",
+		"Babel",
+		"Better CoffeeScript",
+		"Boxy Theme",
+		"Colorsublime",
+		"HTMLBeautify",
+		"JsFormat",
+		"JSON Reindent",
+		"Material Theme",
+		"Oceanic Next Color Scheme",
+		"Package Control",
+		"Sass",
+		"SublimeLinter",
+		"SublimeLinter-coffeelint",
+		"SublimeLinter-contrib-eslint",
+		"SublimeLinter-contrib-stylelint",
+		"SublimeLinter-contrib-stylelint_d",
+		"Swift",
+		"Theme - Autumn"
+	]
+}

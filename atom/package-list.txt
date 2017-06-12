@@ -1,0 +1,12 @@
+atom-no-tab-close-button@1.0.0
+formatter@2.12.4
+formatter-tidy@1.0.1
+jsformat@0.9.3
+language-cjsx@0.3.0
+linter@1.11.18
+linter-eslint@8.0.0
+pretty-json@1.6.1
+react@0.16.1
+simple-drag-drop-text@0.3.4
+twilight@0.3.0
+
