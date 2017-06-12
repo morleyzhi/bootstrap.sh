@@ -3,8 +3,6 @@
 alias resource='source ~/.profile'
 alias dev="ssh $(echo $USER).dev.okcupid.com"
 alias okcontent="cd /Volumes/$(echo $USER)/oksrc/cupid/okcontent"
-alias watch="../offline/frontendscripts/webpack-watch.js"
-alias build="../offline/frontendscripts/webpack-build.js"
 
 # add git branch to bash prompt
 function parse_git_branch {
