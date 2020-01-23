@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 alias resource='source ~/.profile'
-alias dev="ssh $(echo $USER).dev.okcupid.com"
-alias okcontent="cd /Volumes/$(echo $USER)/oksrc/cupid/okcontent"
-alias okfrontend="cd ~/projects/okfrontend"
 alias mastdiff="git diff master -w"
-alias f="rg"
+alias f="rg -g '!src/locale'"
+
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
 
 # add git branch to bash prompt
 function parse_git_branch {
