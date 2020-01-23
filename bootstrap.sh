@@ -65,6 +65,7 @@ brew install bash
 PACKAGES=(
 	cask
 	git
+	mackup
 	node
   ripgrep
 	wget
@@ -82,16 +83,23 @@ echo_ok "Installing cask..."
 brew tap caskroom/cask
 
 CASKS=(
+	1password
+	adobe-creative-cloud
+	android-studio
+	brave
 	daisydisk
 	dropbox
 	firefox
 	google-chrome
 	iterm2
 	keybase
+	numi
   react-native-debugger
+	sizeup
+	sketch
 	slack
 	spotify
-	spotify-notifications
+	there
 	virtualbox
 	visual-studio-code
 	vlc
