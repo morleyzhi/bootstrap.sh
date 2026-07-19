@@ -119,25 +119,10 @@ if [[ -d vscode ]]; then
 fi
 
 # --------------------------------------------------------------------------
-# macOS settings
+# macOS settings (see macos.sh)
 # --------------------------------------------------------------------------
 echo_ok "Configuring macOS..."
-
-# Fast key repeat (lower = faster)
-defaults write NSGlobalDomain KeyRepeat -int 2
-defaults write NSGlobalDomain InitialKeyRepeat -int 15
-
-# Show filename extensions by default
-defaults write NSGlobalDomain AppleShowAllExtensions -bool true
-
-# Expanded save and print dialogs
-defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
-defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
-defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
-defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
-
-# Disable "natural" scroll
-defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
+./macos.sh
 
 # --------------------------------------------------------------------------
 # Folders
