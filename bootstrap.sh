@@ -119,25 +119,26 @@ if [[ -d vscode ]]; then
 fi
 
 # --------------------------------------------------------------------------
-# macOS settings
+# Chrome bookmarks (curated list in chrome/bookmarks.html)
+# --------------------------------------------------------------------------
+if [[ -f chrome/merge-bookmarks.py ]]; then
+	echo_ok "Merging Chrome bookmarks..."
+	python3 chrome/merge-bookmarks.py || echo_warn "Skipped — see message above."
+fi
+
+# --------------------------------------------------------------------------
+# Clocker preferences (timezone list has no other backup)
+# --------------------------------------------------------------------------
+if [[ -f clocker/com.abhishek.Clocker.plist ]]; then
+	echo_ok "Restoring Clocker preferences..."
+	defaults import com.abhishek.Clocker clocker/com.abhishek.Clocker.plist
+fi
+
+# --------------------------------------------------------------------------
+# macOS settings (see macos.sh)
 # --------------------------------------------------------------------------
 echo_ok "Configuring macOS..."
-
-# Fast key repeat (lower = faster)
-defaults write NSGlobalDomain KeyRepeat -int 2
-defaults write NSGlobalDomain InitialKeyRepeat -int 15
-
-# Show filename extensions by default
-defaults write NSGlobalDomain AppleShowAllExtensions -bool true
-
-# Expanded save and print dialogs
-defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
-defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
-defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
-defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
-
-# Disable "natural" scroll
-defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
+./macos.sh
 
 # --------------------------------------------------------------------------
 # Folders
@@ -146,4 +147,4 @@ echo_ok "Creating folder structure..."
 mkdir -p ~/Projects
 
 echo_ok "Bootstrapping complete."
-echo_warn "Post-run: sign in to Dropbox/1Password, run 'mackup restore', import iterm/com.googlecode.iterm2.plist in iTerm2."
+echo_warn "Post-run: sign in to Dropbox/1Password and import iterm/com.googlecode.iterm2.plist in iTerm2."

@@ -14,6 +14,10 @@ cp "$VSCODE_USER/keybindings.json" vscode/keybindings.json
 echo "Backing up iTerm2 preferences..."
 cp ~/Library/Preferences/com.googlecode.iterm2.plist iterm/com.googlecode.iterm2.plist
 
+echo "Backing up Clocker preferences..."
+defaults export com.abhishek.Clocker clocker/com.abhishek.Clocker.plist
+plutil -convert xml1 clocker/com.abhishek.Clocker.plist
+
 echo "Regenerating Brewfile.dump (compare against Brewfile by hand)..."
 brew bundle dump --force --file=Brewfile.dump
 

@@ -4,8 +4,11 @@ An opinionated setup for bootstrapping a new Mac.
 
 - `bootstrap.sh` — the setup script (idempotent, safe to re-run)
 - `Brewfile` — every CLI tool, app, font, and VS Code extension
+- `macos.sh` — macOS `defaults` settings, verified against the current machine
 - `vscode/` — VS Code settings + keybindings (backup alongside VS Code Settings Sync)
 - `iterm/` — iTerm2 preferences
+- `clocker/` — Clocker preferences (timezone list; no cloud sync exists for it)
+- `chrome/` — curated Chrome bookmarks, merged into the bookmarks bar (or import `bookmarks.html` via chrome://bookmarks)
 - `backup.sh` — pulls current machine state back into this repo
 
 ## Setup
@@ -24,7 +27,6 @@ settings, and applies macOS defaults.
 ## Post-run todos
 
 - Sign in to 1Password, Dropbox, and browser profiles
-- `mackup restore`
 - iTerm2 → Settings → General → Preferences → load from `iterm/`
 - Add the generated SSH key to GitHub (it's on your clipboard)
 
