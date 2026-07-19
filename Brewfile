@@ -50,7 +50,6 @@ cask "visual-studio-code"
 cask "cursor"
 cask "postman"
 cask "tableplus"
-cask "postgres-unofficial"  # Postgres.app
 
 # AI
 cask "claude"
@@ -69,7 +68,6 @@ cask "wispr-flow"         # voice dictation
 # Cloud storage & sync
 cask "dropbox"
 cask "google-drive"
-cask "onedrive"
 cask "tailscale-app"
 
 # Media & misc
