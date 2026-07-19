@@ -1,235 +1,149 @@
 #!/usr/bin/env bash
 #
-# Bootstrap script for setting up a new OSX machine
+# Bootstrap script for setting up a new Mac (Apple Silicon).
 #
-# This should be idempotent so it can be run multiple times.
+# Idempotent — safe to run multiple times.
 #
-# Some apps don't have a cask and so still need to be installed by hand. These
-# include:
+# Packages, apps, fonts, and VS Code extensions live in the Brewfile.
+# VS Code settings/keybindings live in vscode/ (restored by this script).
 #
-# - Twitter (app store)
-# - Postgres.app (http://postgresapp.com/)
-#
-# Notes:
-#
-# - If installing full Xcode, it's better to install that first from the app
-#   store before running the bootstrap script. Otherwise, Homebrew can't access
-#   the Xcode libraries as the agreement hasn't been accepted yet.
-#
-# Reading:
-#
-# - http://lapwinglabs.com/blog/hacker-guide-to-setting-up-your-mac
-# - https://gist.github.com/MatthewMueller/e22d9840f9ea2fee4716
-# - https://news.ycombinator.com/item?id=8402079
-# - http://notes.jerzygangi.com/the-best-pgp-tutorial-for-mac-os-x-ever/
+# Not installable via Homebrew / done by hand:
+# - Xcode (App Store) — install first if you want the full IDE
+# - App Store-only apps (Clocker, etc.)
 
-# helpers
-function echo_ok() { echo -e '\033[1;32m'"$1"'\033[0m'; }
-function echo_warn() { echo -e '\033[1;33m'"$1"'\033[0m'; }
-function echo_error() { echo -e '\033[1;31mERROR: '"$1"'\033[0m'; }
+set -uo pipefail
 
-echo_ok "Install starting. You may be asked for your password (for sudo)."
+cd "$(dirname "$0")"
 
-# requires xcode and tools!
-xcode-select -p || exit "XCode must be installed! (use the app store)"
+echo_ok() { echo -e '\033[1;32m'"$1"'\033[0m'; }
+echo_warn() { echo -e '\033[1;33m'"$1"'\033[0m'; }
+echo_error() { echo -e '\033[1;31mERROR: '"$1"'\033[0m'; }
 
-# homebrew
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-if hash brew &>/dev/null; then
-	echo_ok "Homebrew already installed. Getting updates..."
-	brew update
-	brew doctor
-else
-	echo_warn "Installing homebrew..."
-	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+echo_ok "Bootstrap starting. You may be asked for your password (for sudo)."
+
+# --------------------------------------------------------------------------
+# Xcode Command Line Tools
+# --------------------------------------------------------------------------
+if ! xcode-select -p &>/dev/null; then
+	echo_warn "Installing Xcode Command Line Tools..."
+	xcode-select --install
+	echo_error "Re-run this script after the Command Line Tools finish installing."
+	exit 1
 fi
 
-# Update homebrew recipes
+# --------------------------------------------------------------------------
+# Homebrew
+# --------------------------------------------------------------------------
+if ! command -v brew &>/dev/null; then
+	echo_warn "Installing Homebrew..."
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+# Make brew available in this shell (Apple Silicon path, Intel fallback)
+if [[ -x /opt/homebrew/bin/brew ]]; then
+	eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -x /usr/local/bin/brew ]]; then
+	eval "$(/usr/local/bin/brew shellenv)"
+fi
+
+echo_ok "Updating Homebrew..."
 brew update
 
-# Install GNU core utilities (those that come with OS X are outdated)
-# brew tap homebrew/dupes
-# brew install coreutils
-# brew install gnu-sed --with-default-names
-# brew install gnu-tar --with-default-names
-# brew install gnu-indent --with-default-names
-# brew install gnu-which --with-default-names
-# brew install gnu-grep --with-default-names
-
-# Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
-# brew install findutils
-
-# Install Bash 4
-brew install bash
-
-PACKAGES=(
-	cask
-	git
-	mackup
-	node
-  ripgrep
-	wget
-	zsh
-)
-
-echo_ok "Installing packages..."
-brew install "${PACKAGES[@]}"
+echo_ok "Installing everything in the Brewfile..."
+brew bundle --file=Brewfile || echo_warn "Some Brewfile entries failed (apps installed outside Homebrew will conflict — that's fine)."
 
 echo_ok "Cleaning up..."
 brew cleanup
 
-echo_ok "Installing cask..."
-# brew install caskroom/cask/brew-cask
-brew tap caskroom/cask
-
-CASKS=(
-	1password
-	adobe-creative-cloud
-	android-studio
-	brave
-	daisydisk
-	dropbox
-	firefox
-	google-chrome
-	iterm2
-	keybase
-	numi
-  react-native-debugger
-	sizeup
-	sketch
-	slack
-	spotify
-	there
-	virtualbox
-	visual-studio-code
-	vlc
-)
-
-echo_ok "Installing cask apps..."
-brew cask install "${CASKS[@]}"
-
-# brew cask quicklook
-echo_ok "Installing QuickLook Plugins..."
-brew cask install \
-	qlcolorcode qlmarkdown qlprettypatch qlstephen \
-	qlimagesize \
-	quicklook-csv quicklook-json epubquicklook
-
-echo_ok "Installing fonts..."
-brew tap caskroom/fonts
-FONTS=(
-	font-clear-sans
-	font-consolas-for-powerline
-	font-dejavu-sans-mono-for-powerline
-	font-fira-code
-	font-fira-mono-for-powerline
-	font-inconsolata
-	font-inconsolata-for-powerline
-  font-iosevka
-	font-liberation-mono-for-powerline
-	font-menlo-for-powerline
-	font-roboto
-)
-brew cask install "${FONTS[@]}"
-
-echo_ok "Installing global npm packages..."
-
-npm install -g ts-node
-npm install -g typescript
-npm install -g yarn
-
-echo_ok "Installing oh my zsh..."
-
-if [[ ! -f ~/.zshrc ]]; then
-	echo ''
-	echo '##### Installing oh-my-zsh...'
-	curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
-
-	cp ~/.zshrc ~/.zshrc.orig
-	cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
-	chsh -s /bin/zsh
+# --------------------------------------------------------------------------
+# Node (via nvm) + global npm packages
+# --------------------------------------------------------------------------
+export NVM_DIR="$HOME/.nvm"
+mkdir -p "$NVM_DIR"
+if [[ -s "$(brew --prefix nvm)/nvm.sh" ]]; then
+	# shellcheck disable=SC1091
+	source "$(brew --prefix nvm)/nvm.sh"
+	if ! nvm current | grep -q '^v'; then
+		echo_ok "Installing Node LTS via nvm..."
+		nvm install --lts
+	fi
+	echo_ok "Installing global npm packages..."
+	npm install -g pnpm license-checker
 fi
 
-echo_ok "Configuring Github"
+# --------------------------------------------------------------------------
+# oh-my-zsh
+# --------------------------------------------------------------------------
+if [[ ! -d ~/.oh-my-zsh ]]; then
+	echo_ok "Installing oh-my-zsh..."
+	RUNZSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
 
-if [[ ! -f ~/.ssh/id_rsa ]]; then
-	echo ''
-	echo '##### Please enter your github username: '
-	read github_user
-	echo '##### Please enter your github email address: '
-	read github_email
+# --------------------------------------------------------------------------
+# Git + GitHub
+# --------------------------------------------------------------------------
+if [[ ! -f ~/.ssh/id_ed25519 && ! -f ~/.ssh/id_rsa ]]; then
+	echo_ok "Configuring git and GitHub..."
+	read -rp "GitHub username: " github_user
+	read -rp "GitHub email: " github_email
 
-	# setup github
 	if [[ $github_user && $github_email ]]; then
-		# setup config
 		git config --global user.name "$github_user"
 		git config --global user.email "$github_email"
 		git config --global github.user "$github_user"
-		# git config --global github.token your_token_here
 		git config --global color.ui true
 		git config --global push.default current
-		# VS Code support
 		git config --global core.editor "code --wait"
-
-		# set rsa key
-		curl -s -O http://github-media-downloads.s3.amazonaws.com/osx/git-credential-osxkeychain
-		chmod u+x git-credential-osxkeychain
-		sudo mv git-credential-osxkeychain "$(dirname $(which git))/git-credential-osxkeychain"
 		git config --global credential.helper osxkeychain
 
-		# generate ssh key
-		cd ~/.ssh || exit
-		ssh-keygen -t rsa -C "$github_email"
-		pbcopy <~/.ssh/id_rsa.pub
-		echo ''
-		echo '##### The following rsa key has been copied to your clipboard: '
-		cat ~/.ssh/id_rsa.pub
-		echo '##### Follow step 4 to complete: https://help.github.com/articles/generating-ssh-keys'
-		ssh -T git@github.com
+		ssh-keygen -t ed25519 -C "$github_email" -f ~/.ssh/id_ed25519
+		pbcopy <~/.ssh/id_ed25519.pub
+		echo_ok "Your new SSH public key is on the clipboard."
+		echo_ok "Add it at https://github.com/settings/ssh/new then run: ssh -T git@github.com"
 	fi
 fi
 
-echo_ok "Installing VS Code Extensions..."
-
-VSCODE_EXTENSIONS=(
-	shan.code-settings-sync
-)
-
-if hash code &>/dev/null; then
-	echo_ok "Installing VS Code extensions..."
-	for i in "${VSCODE_EXTENSIONS[@]}"; do
-		code --install-extension "$i"
+# --------------------------------------------------------------------------
+# VS Code settings + keybindings (backup lives in vscode/)
+# --------------------------------------------------------------------------
+VSCODE_USER="$HOME/Library/Application Support/Code/User"
+if [[ -d vscode ]]; then
+	echo_ok "Restoring VS Code settings and keybindings..."
+	mkdir -p "$VSCODE_USER"
+	for f in settings.json keybindings.json; do
+		if [[ -f "$VSCODE_USER/$f" && ! -f "$VSCODE_USER/$f.bak" ]]; then
+			cp "$VSCODE_USER/$f" "$VSCODE_USER/$f.bak"
+		fi
+		cp "vscode/$f" "$VSCODE_USER/$f"
 	done
 fi
 
-echo_ok "Configuring OSX..."
+# --------------------------------------------------------------------------
+# macOS settings
+# --------------------------------------------------------------------------
+echo_ok "Configuring macOS..."
 
-# Set fast key repeat rate
-# The step values that correspond to the sliders on the GUI are as follow (lower equals faster):
-# KeyRepeat: 120, 90, 60, 30, 12, 6, 2
-# InitialKeyRepeat: 120, 94, 68, 35, 25, 15
+# Fast key repeat (lower = faster)
 defaults write NSGlobalDomain KeyRepeat -int 2
 defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
 # Show filename extensions by default
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
-# Expanded Save menu
+# Expanded save and print dialogs
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
-
-# Expanded Print menu
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 
 # Disable "natural" scroll
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
-echo_ok 'Running OSX Software Updates...'
-sudo softwareupdate -i -a
-
+# --------------------------------------------------------------------------
+# Folders
+# --------------------------------------------------------------------------
 echo_ok "Creating folder structure..."
-[[ ! -d Projects ]] && mkdir Projects
-#[[ ! -d Workspace ]] && mkdir Workspace
+mkdir -p ~/Projects
 
-echo_ok "Bootstrapping complete"
+echo_ok "Bootstrapping complete."
+echo_warn "Post-run: sign in to Dropbox/1Password, run 'mackup restore', import iterm/com.googlecode.iterm2.plist in iTerm2."

@@ -1,0 +1,66 @@
+{
+  "colorInfo.languages": [
+    {
+      "selector": "css",
+      "colors": "css",
+    },
+    {
+      "selector": "js",
+      "colors": "css",
+    },
+    {
+      "selector": "sass",
+      "colors": "css",
+    },
+    {
+      "selector": "scss",
+      "colors": "css",
+    },
+    {
+      "selector": "less",
+      "colors": "css",
+    },
+  ],
+  "workbench.editorAssociations": {
+    "*.svg": "default",
+  },
+  "diffEditor.renderIndicators": false,
+  "editor.autoClosingBrackets": "never",
+  "editor.emptySelectionClipboard": false,
+  "editor.folding": false,
+  "editor.fontSize": 12,
+  "editor.fontFamily": "'Monaspace Neon', Menlo, monospace",
+  "editor.fontLigatures": "'calt', 'liga'",
+
+  "editor.glyphMargin": false,
+  "editor.matchBrackets": "never",
+  "editor.minimap.enabled": false,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.parameterHints": false,
+  "editor.quickSuggestionsDelay": 1000,
+  "editor.rulers": [80],
+  "editor.tabSize": 2,
+  "editor.accessibilitySupport": "off",
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "window.zoomLevel": 1,
+  "scm.diffDecorations": "none",
+  "html.autoClosingTags": false,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "js/ts.autoClosingTags.enabled": false,
+  "editor.formatOnSave": true,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "claudeCode.preferredLocation": "panel",
+  "git.blame.editorDecoration.enabled": false,
+  "extensions.ignoreRecommendations": true,
+}
