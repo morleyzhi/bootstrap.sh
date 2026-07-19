@@ -119,6 +119,14 @@ if [[ -d vscode ]]; then
 fi
 
 # --------------------------------------------------------------------------
+# Chrome bookmarks (curated list in chrome/bookmarks.html)
+# --------------------------------------------------------------------------
+if [[ -f chrome/merge-bookmarks.py ]]; then
+	echo_ok "Merging Chrome bookmarks..."
+	python3 chrome/merge-bookmarks.py || echo_warn "Skipped — see message above."
+fi
+
+# --------------------------------------------------------------------------
 # Clocker preferences (timezone list has no other backup)
 # --------------------------------------------------------------------------
 if [[ -f clocker/com.abhishek.Clocker.plist ]]; then
