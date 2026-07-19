@@ -8,7 +8,7 @@ An opinionated setup for bootstrapping a new Mac.
 - `vscode/` — VS Code settings + keybindings (backup alongside VS Code Settings Sync)
 - `iterm/` — iTerm2 preferences
 - `clocker/` — Clocker preferences (timezone list; no cloud sync exists for it)
-- `chrome/` — curated Chrome bookmarks, merged into the bookmarks bar (or import `bookmarks.html` via chrome://bookmarks)
+- `chrome/` — curated Chrome bookmarks, merged into the bookmarks bar (or import `bookmarks.html` via chrome://bookmarks), plus `search-shortcuts.tsv` documenting site-search keywords (restore by hand at chrome://settings/searchEngines — they live in Chrome Sync, not on disk here)
 - `backup.sh` — pulls current machine state back into this repo
 
 ## Setup

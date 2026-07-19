@@ -1,0 +1,27 @@
+# Chrome site-search shortcuts for the morley@springtactics.com profile.
+# These live in Chrome Sync (account-scoped), NOT on disk on this Mac — this
+# file is the only local record. Restore by hand at chrome://settings/searchEngines
+# (Site search > Add), or check that Chrome Sync has brought them down.
+#
+# source: db  = exact URL from this Mac's Chrome keywords database
+#         std = reconstructed from the site's standard search URL
+#
+# keyword	name	url	source
+amazon	amazon.com	https://www.amazon.com/s?k={searchTerms}	std
+d	Dictionary.com	https://www.dictionary.com/browse/{searchTerms}	db
+ebay	ebay.com	https://www.ebay.com/sch/i.html?_nkw={searchTerms}	db
+w	en.wikipedia.org	https://en.wikipedia.org/w/index.php?title=Special:Search&search={searchTerms}	std
+etsy	Etsy	https://www.etsy.com/search?ref=tab_search&q={searchTerms}	db
+i	imdb.com	https://www.imdb.com/find/?q={searchTerms}	std
+maps	maps.google.com	https://maps.google.com/maps?q={searchTerms}	std
+magiccards	Scryfall	https://scryfall.com/search?q={searchTerms}	std
+setlist	setlist.fm	https://www.setlist.fm/search?query={searchTerms}	std
+p	thepiratebay.org	https://thepiratebay.org/search.php?q={searchTerms}&all=on&search=Pirate+Search&page=0&orderby=	db
+t	thesaurus.com	https://www.thesaurus.com/browse/{searchTerms}	std
+u	urbandictionary.com	https://www.urbandictionary.com/define.php?term={searchTerms}	std
+whois	whois.sc	https://whois.domaintools.com/go/?q={searchTerms}&service=whois	db
+yelp	yelp.com	https://www.yelp.com/search?find_desc={searchTerms}	std
+y	youtube.com	https://www.youtube.com/results?search_query={searchTerms}	std
+#
+# Extras that exist only in the daylight profile on this Mac:
+a	Acronym Finder	https://www.acronymfinder.com/~/search/af.aspx?pid=osearch&string=exact&acronym={searchTerms}	db
