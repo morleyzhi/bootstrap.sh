@@ -1,20 +1,34 @@
 # Bootstrap.sh
 
-An opinionated shell script to bootstrap a new Mac.
+An opinionated setup for bootstrapping a new Mac.
 
-# Setup
+- `bootstrap.sh` — the setup script (idempotent, safe to re-run)
+- `Brewfile` — every CLI tool, app, font, and VS Code extension
+- `vscode/` — VS Code settings + keybindings (backup alongside VS Code Settings Sync)
+- `iterm/` — iTerm2 preferences
+- `backup.sh` — pulls current machine state back into this repo
 
-0. Install Xcode from the Mac App Store.
-1. Open Xcode and agree to its license.
-1. Install Xcode Command Line Tools: `xcode-select --install`
-1. Open bootstrap.sh and edit the PACKAGES and CASKS list to your liking.
-1. Add or remove [OS X settings](https://github.com/mathiasbynens/dotfiles/blob/master/.osx) as you see fit.
+## Setup
 
-# Run
+1. (Optional) Install Xcode from the Mac App Store and accept its license.
+2. Clone this repo and run:
 
-Run `sh bootstrap.sh` from the directory you cloned this project in.
+```sh
+./bootstrap.sh
+```
 
-# Post-run todos
+The script installs Xcode Command Line Tools and Homebrew if missing, runs
+`brew bundle`, sets up nvm/Node, oh-my-zsh, git + an SSH key, restores VS Code
+settings, and applies macOS defaults.
 
-- Setup Dropbox
+## Post-run todos
+
+- Sign in to 1Password, Dropbox, and browser profiles
 - `mackup restore`
+- iTerm2 → Settings → General → Preferences → load from `iterm/`
+- Add the generated SSH key to GitHub (it's on your clipboard)
+
+## Keeping it in sync
+
+Run `./backup.sh` every so often — it copies current VS Code/iTerm2 config into
+the repo and dumps a fresh `Brewfile.dump` to diff against `Brewfile`.
