@@ -29,6 +29,15 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 15
 # Holding a key repeats it instead of showing the accent popup
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
+# Disable Caps Lock (System Settings > Keyboard > Modifier Keys > Caps Lock: No Action)
+# Src 0x700000039 = Caps Lock, Dst 0x700000000 = no action; the Fn/Globe
+# entries reproduce what the system stores alongside it.
+# Per-host setting; takes effect after logout or replugging the keyboard.
+defaults -currentHost write NSGlobalDomain com.apple.keyboard.modifiermapping.0-0-0 -array \
+	'<dict><key>HIDKeyboardModifierMappingDst</key><integer>1095216660483</integer><key>HIDKeyboardModifierMappingSrc</key><integer>1095216660483</integer></dict>' \
+	'<dict><key>HIDKeyboardModifierMappingDst</key><integer>1095216660483</integer><key>HIDKeyboardModifierMappingSrc</key><integer>280379760050179</integer></dict>' \
+	'<dict><key>HIDKeyboardModifierMappingDst</key><integer>30064771072</integer><key>HIDKeyboardModifierMappingSrc</key><integer>30064771129</integer></dict>'
+
 # No auto-capitalization, spelling autocorrect, or double-space period
 # (smart quotes and dashes stay on)
 defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
