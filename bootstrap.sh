@@ -119,6 +119,14 @@ if [[ -d vscode ]]; then
 fi
 
 # --------------------------------------------------------------------------
+# Clocker preferences (timezone list has no other backup)
+# --------------------------------------------------------------------------
+if [[ -f clocker/com.abhishek.Clocker.plist ]]; then
+	echo_ok "Restoring Clocker preferences..."
+	defaults import com.abhishek.Clocker clocker/com.abhishek.Clocker.plist
+fi
+
+# --------------------------------------------------------------------------
 # macOS settings (see macos.sh)
 # --------------------------------------------------------------------------
 echo_ok "Configuring macOS..."

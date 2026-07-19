@@ -7,6 +7,7 @@ An opinionated setup for bootstrapping a new Mac.
 - `macos.sh` — macOS `defaults` settings, verified against the current machine
 - `vscode/` — VS Code settings + keybindings (backup alongside VS Code Settings Sync)
 - `iterm/` — iTerm2 preferences
+- `clocker/` — Clocker preferences (timezone list; no cloud sync exists for it)
 - `backup.sh` — pulls current machine state back into this repo
 
 ## Setup

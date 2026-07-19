@@ -39,6 +39,7 @@ cask "1password"
 cask "iterm2"
 cask "rectangle"          # window management (replaced SizeUp)
 cask "caffeine"
+cask "clocker"            # menu bar timezone tracker (this Mac has the App Store copy)
 cask "daisydisk"
 cask "numi"
 
