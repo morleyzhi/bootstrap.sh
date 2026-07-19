@@ -147,4 +147,4 @@ echo_ok "Creating folder structure..."
 mkdir -p ~/Projects
 
 echo_ok "Bootstrapping complete."
-echo_warn "Post-run: sign in to Dropbox/1Password, run 'mackup restore', import iterm/com.googlecode.iterm2.plist in iTerm2."
+echo_warn "Post-run: sign in to Dropbox/1Password and import iterm/com.googlecode.iterm2.plist in iTerm2."

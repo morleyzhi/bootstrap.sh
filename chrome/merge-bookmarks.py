@@ -37,11 +37,14 @@ def canon(url):
 data = json.load(open(PROFILE))
 bar = data["roots"]["bookmark_bar"]["children"]
 have = {canon(c["url"]) for c in bar if c.get("type") == "url"}
+have_names = {c.get("name") for c in bar}
 
 added = 0
 next_id = 1000
 for url, name in wanted:
-    if canon(url) in have:
+    # match by URL (ignoring fragments) or by name, so a bookmark that exists
+    # with slightly different coordinates/params isn't duplicated
+    if canon(url) in have or name in have_names:
         continue
     next_id += 1
     bar.append({"id": str(next_id), "name": name, "type": "url", "url": url})

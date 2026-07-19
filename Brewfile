@@ -14,7 +14,6 @@ brew "wget"
 brew "ripgrep"            # rg — the `f` alias depends on this
 brew "mcfly"              # smarter shell history search
 brew "gnupg"
-brew "mackup"             # app-settings backup/restore
 brew "nvm"                # node versions (node itself installed via `nvm install --lts`)
 brew "uv"                 # python packaging
 brew "awscli"

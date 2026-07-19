@@ -27,7 +27,6 @@ settings, and applies macOS defaults.
 ## Post-run todos
 
 - Sign in to 1Password, Dropbox, and browser profiles
-- `mackup restore`
 - iTerm2 → Settings → General → Preferences → load from `iterm/`
 - Add the generated SSH key to GitHub (it's on your clipboard)
 
