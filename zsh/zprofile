@@ -1,0 +1,3 @@
+# Symlinked to ~/.zprofile by bootstrap.sh.
+# Intentionally empty: everything lives in zshrc (interactive shells) and
+# zshenv (all shells). Secrets belong in 1Password/Doppler, not here.

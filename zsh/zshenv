@@ -1,0 +1,2 @@
+# Symlinked to ~/.zshenv by bootstrap.sh — sourced by every zsh, including scripts.
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"

@@ -80,6 +80,27 @@ if [[ ! -d ~/.oh-my-zsh ]]; then
 fi
 
 # --------------------------------------------------------------------------
+# zsh config (symlinked from zsh/ so edits show up in git)
+# --------------------------------------------------------------------------
+echo_ok "Linking zsh config..."
+mkdir -p ~/.zsh ~/.oh-my-zsh/custom/themes
+
+link() {
+	local src="$PWD/$1" dst="$2"
+	if [[ -e $dst && ! -L $dst ]]; then
+		mv "$dst" "$dst.bak"
+	fi
+	ln -sfn "$src" "$dst"
+}
+
+link zsh/zshrc ~/.zshrc
+link zsh/zprofile ~/.zprofile
+link zsh/zshenv ~/.zshenv
+link zsh/ripgreprc ~/.ripgreprc
+link zsh/git-prompt.zsh ~/.zsh/git-prompt.zsh
+link zsh/morley-new.zsh-theme ~/.oh-my-zsh/custom/themes/morley-new.zsh-theme
+
+# --------------------------------------------------------------------------
 # Git + GitHub
 # --------------------------------------------------------------------------
 if [[ ! -f ~/.ssh/id_ed25519 && ! -f ~/.ssh/id_rsa ]]; then

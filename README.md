@@ -5,6 +5,7 @@ An opinionated setup for bootstrapping a new Mac.
 - `bootstrap.sh` — the setup script (idempotent, safe to re-run)
 - `Brewfile` — every CLI tool, app, font, and VS Code extension
 - `macos.sh` — macOS `defaults` settings, verified against the current machine
+- `zsh/` — shell config (zshrc, custom oh-my-zsh theme, git-prompt, ripgreprc), symlinked into place so edits show up in `git diff`
 - `vscode/` — VS Code settings + keybindings (backup alongside VS Code Settings Sync)
 - `iterm/` — iTerm2 preferences
 - `clocker/` — Clocker preferences (timezone list; no cloud sync exists for it)
