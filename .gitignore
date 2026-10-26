@@ -1,1 +1,5 @@
 Brewfile.dump
+__pycache__/
+agents/skills/local-redact/.venv/
+agents/skills/local-redact/model/
+.DS_Store

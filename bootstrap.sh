@@ -101,6 +101,31 @@ link zsh/git-prompt.zsh ~/.zsh/git-prompt.zsh
 link zsh/morley-new.zsh-theme ~/.oh-my-zsh/custom/themes/morley-new.zsh-theme
 
 # --------------------------------------------------------------------------
+# Claude Code + Codex: shared AGENTS.md, Jev scripts, and skills (symlinked from agents/)
+# --------------------------------------------------------------------------
+echo_ok "Linking Claude Code and Codex config..."
+mkdir -p ~/.claude/skills ~/.codex/skills
+
+link agents/AGENTS.md ~/.claude/CLAUDE.md
+link agents/AGENTS.md ~/.codex/AGENTS.md
+link agents/jev ~/.claude/jev
+for skill in agents/skills/*/; do
+	skill=${skill%/}
+	link "$skill" ~/.claude/skills/"${skill##*/}"
+	link "$skill" ~/.codex/skills/"${skill##*/}"
+done
+
+# local-redact keeps its Python env and model inside the skill directory (gitignored)
+redact=agents/skills/local-redact
+if [[ ! -x $redact/.venv/bin/python ]] && command -v uv &>/dev/null; then
+	echo_ok "Setting up the local-redact skill..."
+	uv venv "$redact/.venv" &&
+		uv pip install --python "$redact/.venv/bin/python" -r "$redact/requirements.txt" &&
+		"$redact/run.sh" --setup ||
+		echo_warn "local-redact setup failed; re-run bootstrap.sh to retry."
+fi
+
+# --------------------------------------------------------------------------
 # Git + GitHub
 # --------------------------------------------------------------------------
 if [[ ! -f ~/.ssh/id_ed25519 && ! -f ~/.ssh/id_rsa ]]; then

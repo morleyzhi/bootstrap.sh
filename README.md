@@ -6,6 +6,7 @@ An opinionated setup for bootstrapping a new Mac.
 - `Brewfile` — every CLI tool, app, font, and VS Code extension
 - `macos.sh` — macOS `defaults` settings, verified against the current machine
 - `zsh/` — shell config (zshrc, custom oh-my-zsh theme, git-prompt, ripgreprc), symlinked into place so edits show up in `git diff`
+- `agents/` — Claude Code and Codex config, symlinked into place: `AGENTS.md` (becomes `~/.claude/CLAUDE.md` and `~/.codex/AGENTS.md`), `jev/` (`~/.claude/jev`), and `skills/` (each skill linked into `~/.claude/skills/` and `~/.codex/skills/`)
 - `vscode/` — VS Code settings + keybindings (backup alongside VS Code Settings Sync)
 - `iterm/` — iTerm2 preferences
 - `clocker/` — Clocker preferences (timezone list; no cloud sync exists for it)

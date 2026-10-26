@@ -18,6 +18,12 @@ echo "Backing up Clocker preferences..."
 defaults export com.abhishek.Clocker clocker/com.abhishek.Clocker.plist
 plutil -convert xml1 clocker/com.abhishek.Clocker.plist
 
+echo "Listing local Claude Code and Codex skills that aren't in agents/skills..."
+for dir in ~/.claude/skills/*/ ~/.codex/skills/*/; do
+	dir=${dir%/}
+	[[ -L $dir || ${dir##*/} == synced ]] || echo "  not in repo: $dir"
+done
+
 echo "Regenerating Brewfile.dump (compare against Brewfile by hand)..."
 brew bundle dump --force --file=Brewfile.dump
 
