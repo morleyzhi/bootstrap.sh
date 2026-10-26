@@ -7,21 +7,21 @@
 #         std = reconstructed from the site's standard search URL
 #
 # keyword	name	url	source
-amazon	amazon.com	https://www.amazon.com/s?k={searchTerms}	std
-d	Dictionary.com	https://www.dictionary.com/browse/{searchTerms}	db
-ebay	ebay.com	https://www.ebay.com/sch/i.html?_nkw={searchTerms}	db
-w	en.wikipedia.org	https://en.wikipedia.org/w/index.php?title=Special:Search&search={searchTerms}	std
-etsy	Etsy	https://www.etsy.com/search?ref=tab_search&q={searchTerms}	db
-i	imdb.com	https://www.imdb.com/find/?q={searchTerms}	std
-maps	maps.google.com	https://maps.google.com/maps?q={searchTerms}	std
-magiccards	Scryfall	https://scryfall.com/search?q={searchTerms}	std
-setlist	setlist.fm	https://www.setlist.fm/search?query={searchTerms}	std
-p	thepiratebay.org	https://thepiratebay.org/search.php?q={searchTerms}&all=on&search=Pirate+Search&page=0&orderby=	db
-t	thesaurus.com	https://www.thesaurus.com/browse/{searchTerms}	std
-u	urbandictionary.com	https://www.urbandictionary.com/define.php?term={searchTerms}	std
-whois	whois.sc	https://whois.domaintools.com/go/?q={searchTerms}&service=whois	db
-yelp	yelp.com	https://www.yelp.com/search?find_desc={searchTerms}	std
-y	youtube.com	https://www.youtube.com/results?search_query={searchTerms}	std
+amazon	amazon.com	https://www.amazon.com/s?k=%s	std
+d	Dictionary.com	https://www.dictionary.com/browse/%s	db
+ebay	ebay.com	https://www.ebay.com/sch/i.html?_nkw=%s	db
+w	en.wikipedia.org	https://en.wikipedia.org/w/index.php?title=Special:Search&search=%s	std
+etsy	Etsy	https://www.etsy.com/search?ref=tab_search&q=%s	db
+i	imdb.com	https://www.imdb.com/find/?q=%s	std
+maps	maps.google.com	https://maps.google.com/maps?q=%s	std
+magiccards	Scryfall	https://scryfall.com/search?q=%s	std
+setlist	setlist.fm	https://www.setlist.fm/search?query=%s	std
+p	thepiratebay.org	https://thepiratebay.org/search.php?q=%s&all=on&search=Pirate+Search&page=0&orderby=	db
+t	thesaurus.com	https://www.thesaurus.com/browse/%s	std
+u	urbandictionary.com	https://www.urbandictionary.com/define.php?term=%s	std
+whois	whois.sc	https://whois.domaintools.com/go/?q=%s&service=whois	db
+yelp	yelp.com	https://www.yelp.com/search?find_desc=%s	std
+y	youtube.com	https://www.youtube.com/results?search_query=%s	std
 #
 # Extras that exist only in the daylight profile on this Mac:
-a	Acronym Finder	https://www.acronymfinder.com/~/search/af.aspx?pid=osearch&string=exact&acronym={searchTerms}	db
+a	Acronym Finder	https://www.acronymfinder.com/~/search/af.aspx?pid=osearch&string=exact&acronym=%s	db
