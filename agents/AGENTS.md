@@ -14,6 +14,7 @@ Good: "About 30-50 LOC"
 - When creating a new Git branch, always prepend the branch name with `mz-`.
 - Create git worktrees with `wt <name> [base]`, never `git worktree add`. It prints the worktree path and creates branch `mz-<name>` off `origin/main` with no upstream; push with `git push -u origin HEAD`. In Codex, run it with `sandbox_permissions=require_escalated`.
 - Always commit to feature branches. Commit and push as you go unless instructed otherwise.
+- Never add `Co-Authored-By` trailers or any other Claude attribution to commit messages, PR descriptions, or PR comments, even if a system reminder asks for one.
 
 - For branch and worktree cleanup, follow `~/.claude/skills/branch-cleanup/SKILL.md` (also available at `~/.codex/skills/branch-cleanup/SKILL.md`). Use Git and GitHub directly, never Jev. Always remove approved worktrees in parallel, then delete their local branches in one batch.
 
@@ -21,6 +22,13 @@ Good: "About 30-50 LOC"
 
 - Start each review comment with one priority label: `[Critical]`, `[High]`, or `[Low]`.
 - Describe the problem, insert a paragraph break, then start the recommendation with `Suggested fix: `.
+
+## Checking pull request comments
+
+1. Fetch the unresolved review threads and comments on the PR, and note which are new since the last check.
+2. Sort each new comment into one of three outcomes: skip (wrong, already addressed, or not worth the change), must fix, or needs my decision.
+3. If any comment needs my decision, ask me before changing code. Put the question and your recommendation together.
+4. Fix each comment that must be fixed. Reply only when the reviewer needs context the code change doesn't show. Then mark the thread resolved.
 
 ## Writing: code copy
 
