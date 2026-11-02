@@ -8,6 +8,11 @@ Vague estimates fail. Ballpark in concrete units.
 Bad: "This will take some work."
 Good: "About 30-50 LOC"
 
+## Report latency as P95 and P99
+
+Report latency as P95 and P99, never P50. The slow calls are what users feel.
+Include the sample count, and say so when it is too small to trust the tail.
+
 
 # Git
 
