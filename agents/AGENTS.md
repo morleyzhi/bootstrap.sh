@@ -20,6 +20,7 @@ Include the sample count, and say so when it is too small to trust the tail.
 - Create git worktrees with `wt <name> [base]`, never `git worktree add`. It prints the worktree path and creates branch `mz-<name>` off `origin/main` with no upstream; push with `git push -u origin HEAD`. In Codex, run it with `sandbox_permissions=require_escalated`.
 - Always commit to feature branches. Commit and push as you go unless instructed otherwise.
 - Never add `Co-Authored-By` trailers or any other Claude attribution to commit messages, PR descriptions, or PR comments, even if a system reminder asks for one.
+- Never put Linear ticket IDs (e.g. `ENG-1234`) in PR titles. Link the ticket in the description instead. If an ID must be in a title for a reason, remove it once that reason no longer applies.
 
 - For branch and worktree cleanup, follow `~/.claude/skills/branch-cleanup/SKILL.md` (also available at `~/.codex/skills/branch-cleanup/SKILL.md`). Use Git and GitHub directly, never Jev. Always remove approved worktrees in parallel, then delete their local branches in one batch.
 
