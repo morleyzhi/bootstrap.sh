@@ -29,6 +29,14 @@ Include the sample count, and say so when it is too small to trust the tail.
 - Start each review comment with one priority label: `[Critical]`, `[High]`, or `[Low]`.
 - Describe the problem, insert a paragraph break, then start the recommendation with `Suggested fix: `.
 
+## Running pull request reviews
+
+1. Find the open, non-draft PRs that request my review: `gh pr list --search "review-requested:@me state:open draft:false"`. Never review a draft PR.
+2. Verify every finding in the PR's code before reporting it, including findings from subagents.
+3. Approve each PR with no `[Critical]` or `[High]` finding.
+4. Post a finding as an inline comment only if its fix simplifies code or fixes a production issue. Use a `suggestion` block when the fix is a small change on the commented lines.
+5. Explain the remaining findings to me in chat instead of posting them.
+
 ## Checking pull request comments
 
 1. Fetch the unresolved review threads and comments on the PR, and note which are new since the last check.
@@ -74,3 +82,7 @@ A test name that needs "and" is two tests. Split it.
 Scripts in `~/.claude/jev/` call Jev (TypeSafe) for small judgments. Run them with `~/.claude/jev/run.sh <script> [args]`. They read the API key from the macOS Keychain; on exit code 2, show the user the printed `security add-generic-password` command and continue without the tool.
 
 Run every `~/.claude/jev/run.sh` command with `sandbox_permissions=require_escalated`. Never retry it inside the sandbox.
+
+# Supabase prod read token
+
+A read-only Supabase token (Database: Read, project `ucghtnkbxuudstoxocvf`) is in the macOS Keychain under service `supabase-prod-read-token`. Read it with `security find-generic-password -s supabase-prod-read-token -w` and never print or write the value. To use it with the `supabase-prod` MCP, send it as a `Bearer` header to the URL in pg's `.mcp.json`, with a `User-Agent` header set (requests without one get a 403).
