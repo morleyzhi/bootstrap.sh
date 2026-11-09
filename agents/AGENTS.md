@@ -33,7 +33,7 @@ Include the sample count, and say so when it is too small to trust the tail.
 
 1. Find the open, non-draft PRs that request my review: `gh pr list --search "review-requested:@me state:open draft:false"`. Never review a draft PR.
 2. Verify every finding in the PR's code before reporting it, including findings from subagents.
-3. Approve each PR with no `[Critical]` or `[High]` finding.
+3. Approve each PR with no `[Critical]` or `[High]` finding. When a PR includes its own backfill script, review it as if the backfill has run. If the approval depends on that, say so in the approval message.
 4. Post a finding as an inline comment only if its fix simplifies code or fixes a production issue. Use a `suggestion` block when the fix is a small change on the commented lines.
 5. Explain the remaining findings to me in chat instead of posting them.
 
