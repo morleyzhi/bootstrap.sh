@@ -80,7 +80,7 @@ A test name that needs "and" is two tests. Split it.
 
 # Jev local tools
 
-Scripts in `~/.claude/jev/` call Jev (TypeSafe) for small judgments. Run them with `~/.claude/jev/run.sh <script> [args]`. They read the API key from the macOS Keychain; on exit code 2, show the user the printed `security add-generic-password` command and continue without the tool.
+Scripts in `~/.claude/jev/` call Jev (TypeSafe, through OpenRouter) for small judgments. Run them with `~/.claude/jev/run.sh <script> [args]`. They read the OpenRouter API key from the macOS Keychain (`openrouter-api-key`); on exit code 2, show the user the printed `security add-generic-password` command and continue without the tool.
 
 Run every `~/.claude/jev/run.sh` command with `sandbox_permissions=require_escalated`. Never retry it inside the sandbox.
 

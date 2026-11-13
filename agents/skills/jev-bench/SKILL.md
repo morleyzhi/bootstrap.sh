@@ -16,7 +16,7 @@ Each variant is one of:
 - a question the user pastes, or the version on another branch or worktree;
 - a different endpoint, model, or agent that takes the same input and returns a comparable answer.
 
-Write the variants to `variants.json` as `{ name: { endpoint, model, question, threshold } }`, and show the user the diff between them before running. Pin the model version. If the only option is `jev-latest`, say so in the report header, because two runs a week apart may use different models.
+Write the variants to `variants.json` as `{ name: { endpoint, model, question, threshold } }`, and show the user the diff between them before running. Pin the model version. If the only option is `~typesafe/jev-latest`, say so in the report header, because two runs a week apart may use different models.
 
 ## 2. Build or reuse the corpus
 

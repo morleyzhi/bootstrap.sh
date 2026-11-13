@@ -1,17 +1,16 @@
 import { execFileSync } from 'node:child_process';
 
-const JEV_URL = 'https://api.typesafe.ai/v1/systemone';
-const MODEL = 'jev-latest';
-const KEYCHAIN_SERVICE = 'jev-api-key';
+const JEV_URL = 'https://openrouter.ai/api/alpha/decisions';
+const MODEL = '~typesafe/jev-latest';
+const KEYCHAIN_SERVICE = 'openrouter-api-key';
 
 export const MISSING_KEY_MESSAGE = [
-  'Jev API key not found in the macOS Keychain.',
+  'OpenRouter API key not found in the macOS Keychain.',
   'Ask the user to add it once (the key is typed at a hidden prompt, nothing lands in shell history):',
   `  security add-generic-password -a "$USER" -s ${KEYCHAIN_SERVICE} -w`,
 ].join('\n');
 
 export const readApiKey = () => {
-  if (process.env.JEV_API_KEY) return process.env.JEV_API_KEY;
   try {
     return execFileSync(
       'security',
